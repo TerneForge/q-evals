@@ -41,7 +41,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--tasks",
         nargs='+',
-        default=["hellaswag, arc_challenge, arc_easy, winogrande, piqa"],
+        default=["hellaswag", "arc_challenge", "arc_easy", "winogrande", "piqa"],
         help="List of evaluation tasks (default: hellaswag).",
     )
     args = parser.parse_args()
