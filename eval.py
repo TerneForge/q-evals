@@ -14,7 +14,7 @@ from modeling_phi import QPhiForCausalLM
 from logging import Logger
 logger = Logger("logger")
 
-def get_model(model1n, model2n):
+def get_model(model1n):
     model = QPhiForCausalLM.from_pretrained(
             model1n,
             device_map="cuda",
