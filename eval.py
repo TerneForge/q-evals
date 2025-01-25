@@ -11,6 +11,8 @@ from transformers.modeling_utils import load_sharded_checkpoint
 
 import math
 from modeling_phi import QPhiForCausalLM
+from logging import Logger
+logger = Logger()
 
 def get_model(model1n, model2n):
     model = QPhiForCausalLM.from_pretrained(
@@ -45,4 +47,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     t = get_model()
     r = eval(t, args.tasks, args.num_fewshot)
-    print("results:", r['results'])
+    logger.log(r)
