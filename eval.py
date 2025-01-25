@@ -47,4 +47,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     t = get_model(args.checkpoint_path)
     r = eval(t, args.tasks, 0)
-    logger.log(r)
+    print(r)
