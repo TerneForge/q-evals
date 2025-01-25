@@ -45,7 +45,6 @@ class QLinear(nn.Linear):
         x = x.to(w_quant.device)
         # STE weight quantization
         w_quant = w_quant + (self.quantizer(w_quant) - w_quant).detach()
-        w_quant = normalize(w_quant)
         y = F.linear(x, w_quant) 
         # apply scales post matmul
         y = y * self.scales

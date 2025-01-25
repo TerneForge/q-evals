@@ -33,38 +33,16 @@ if __name__ == "__main__":
     parser.add_argument(
         "--checkpoint_path",
         type=str,
-        required=True,
+        default="kaizen9/phi-1_5_HQ_6000_DONE_20k",
         help="Path to the local model checkpoint.",
-    )
-    parser.add_argument(
-        "--merge_model_name",
-        type=str,
-        default="Qwen/Qwen2-1.5B",
-        help="Model name (default: gpt2).",
     )
     parser.add_argument(
         "--tasks",
         nargs='+',
-        default=["hellaswag"],
+        default=["hellaswag, arc_challenge, arc_easy, winogrande, piqa"],
         help="List of evaluation tasks (default: hellaswag).",
     )
-    parser.add_argument(
-        "--num_fewshot",
-        type=int,
-        default=0,
-        help="Number of few-shot examples (default: 0 for zero-shot).",
-    )
-    parser.add_argument(
-        "--lossless",
-        default=False,
-        action="store_true",
-        help="Use lossless compression.",
-    )
     args = parser.parse_args()
-    t = get_model(args.checkpoint_path, args.merge_model_name)
-    # from transformers import AutoTokenizer, AutoModelForCausalLM
-    # t = AutoModelForCausalLM.from_pretrained("deepseek-ai/deepseek-coder-1.3b-base")
+    t = get_model()
     r = eval(t, args.tasks, args.num_fewshot)
-    # print("hellaswag acc:", r['results']['hellaswag']['acc_norm,none'])
-    # print("piqa:", r['results']['piqa'])
     print("results:", r['results'])
