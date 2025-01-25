@@ -45,6 +45,6 @@ if __name__ == "__main__":
         help="List of evaluation tasks (default: hellaswag).",
     )
     args = parser.parse_args()
-    t = get_model()
-    r = eval(t, args.tasks, args.num_fewshot)
+    t = get_model(args.checkpoint_path)
+    r = eval(t, args.tasks, 0)
     logger.log(r)
